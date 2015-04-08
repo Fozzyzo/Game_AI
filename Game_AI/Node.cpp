@@ -10,16 +10,21 @@ Node::~Node()
 {
 }
 
-Node::Node(sf::Vector2f _pos, sf::Texture& _tex, float _cost)
+Node::Node(sf::Vector2f _pos, sf::Texture& _tex, float _costMultiplier)
 {
 	texture = _tex;
 	position = _pos;
 	sprite.setTexture(_tex);
 	sprite.setPosition(_pos);
-	cost = _cost;
+	costMultiplier = _costMultiplier;
 }
 
 void Node::Draw(sf::RenderWindow& _window)
 {
 	_window.draw(sprite);
+}
+
+void Node::AddConnection(Node* node, float cost)
+{
+	connections.insert(std::make_pair(node, cost));
 }
