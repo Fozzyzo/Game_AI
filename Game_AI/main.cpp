@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Node.h"
 #include "MapLoader.h"
+#include "Pathfinding.h"
 
 int main()
 {
@@ -10,7 +11,7 @@ int main()
 	sf::Texture texture;
 	sf::Vector2f pos;
 	sf::Sprite sprite;
-
+	
 	int mapArray[100] =
 	{
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -26,7 +27,7 @@ int main()
 	};
 
 	map.InitMap(mapArray);
-	
+	Pathfinding pt(map.mapNodes[0], map.mapNodes[99],140);
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -35,7 +36,7 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-
+		//bool done = pt.step();
 		window.clear(sf::Color::Black);
 		map.Draw(window);
 		window.draw(sprite);

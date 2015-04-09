@@ -6,6 +6,7 @@
 
 class Node
 {
+	friend class Pathfinding;
 public:
 	Node();
 	Node(sf::Vector2f _pos, sf::Texture& _tex, float _costMultiplier);
