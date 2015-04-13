@@ -7,6 +7,7 @@ int main()
 {
 	sf::RenderWindow window(sf::VideoMode(640, 640), "SFML works!");
 	MapLoader map;
+	Start start;
 	sf::Image image;
 	sf::Texture texture;
 	sf::Vector2f pos;
@@ -36,12 +37,20 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		{
+			window.close();
+		}
+
 		//bool done = pt.step();
 		window.clear(sf::Color::Black);
+		start.Update(window);
+		map.Update(start, window);		
 		map.Draw(window);
+		start.Draw(window);
 		window.draw(sprite);
 		window.display();
-		
 	}
 
 	return 0;

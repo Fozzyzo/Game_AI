@@ -139,3 +139,21 @@ void MapLoader::Draw(sf::RenderWindow &_window)
 		mapNodes[i]->Draw(_window);
 	}
 }
+
+void MapLoader::Update(Start _start, sf::RenderWindow& _window)
+{
+	_start.Update(_window);
+
+	for (int i = 0; i < mapNodes.size(); i++)
+	{
+		if (_start.getClickPosition().x >= mapNodes[i]->getPos().x
+			&& _start.getClickPosition().y >= mapNodes[i]->getPos().y
+			&& _start.getClickPosition().x <= mapNodes[i + 1]->getPos().x
+			&& _start.getClickPosition().y <= mapNodes[i + 1]->getPos().y)
+		{
+			_start.setStartPos(sf::Vector2f(mapNodes[i]->getPos().x + 32.0f, mapNodes[i]->getPos().y + 32.0f));
+		}
+	}
+
+}
+

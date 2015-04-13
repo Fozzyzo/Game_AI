@@ -15,6 +15,7 @@ public:
 	void AddConnection(Node* node, float cost);
 	float getCostMultiplier(){ return costMultiplier; }
 	sf::Sprite getSprite(){ return sprite; }
+	sf::Vector2f getPos(){ return position; }
 	
 private:
 
