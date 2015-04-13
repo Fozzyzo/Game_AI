@@ -4,12 +4,13 @@
 
 Start::Start()
 {
-	shape.setRadius(25.0f);
+	shape.setRadius(32.0f);
 	shape.setFillColor(sf::Color(100, 250, 50));
 
 	shape.setOutlineThickness(5.0f);
 	shape.setOutlineColor(sf::Color(25, 75, 25));
 
+	clickPosition = sf::Vector2f(0, 0);
 	isPlaced = false;
 }
 
@@ -25,9 +26,8 @@ void Start::Update(sf::RenderWindow& _window)
 		
 		if (mouseClicked == false)
 		{		
-			clickPosition = sf::Vector2f(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
-			//shape.setPosition(sf::Mouse::getPosition(_window).x, sf::Mouse::getPosition(_window).y);			
-			std::cout << "x = " << sf::Mouse::getPosition(_window).x << ", y = " << sf::Mouse::getPosition(_window).y << std::endl;
+			clickPosition = sf::Vector2f(sf::Mouse::getPosition(_window).x, sf::Mouse::getPosition(_window).y);
+			std::cout << "x = " << clickPosition.x << ", y = " << clickPosition.y << std::endl;		
 			mouseClicked = true;
 			isPlaced = true;
 		}
@@ -49,7 +49,7 @@ void Start::Draw(sf::RenderWindow& _window)
 
 void Start::setStartPos(sf::Vector2f _pos)
 {
-	shape.setPosition(_pos);
+	shape.setPosition(_pos);	
 }
 
 

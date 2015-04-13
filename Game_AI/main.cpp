@@ -2,17 +2,29 @@
 #include "Node.h"
 #include "MapLoader.h"
 #include "Pathfinding.h"
+#include "InputInfo.h"
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(640, 640), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(640, 640), "GameAI");
 	MapLoader map;
-	Start start;
+	sf::Font font;
+	sf::Text inputInfo;
 	sf::Image image;
 	sf::Texture texture;
 	sf::Vector2f pos;
-	sf::Sprite sprite;
 	
+	font.loadFromFile("assets/arial.ttf");
+
+	inputInfo.setFont(font);
+	inputInfo.setString("Mouse 1: Place start\n"
+		"Mouse 2: Place end\n"
+		"Esc: Exit");
+
+	inputInfo.setPosition(5,0);
+	inputInfo.setColor(sf::Color::White);
+	inputInfo.setCharacterSize(20);
+
 	int mapArray[100] =
 	{
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -45,11 +57,9 @@ int main()
 
 		//bool done = pt.step();
 		window.clear(sf::Color::Black);
-		start.Update(window);
-		map.Update(start, window);		
+		map.Update(window);
 		map.Draw(window);
-		start.Draw(window);
-		window.draw(sprite);
+		window.draw(inputInfo);
 		window.display();
 	}
 

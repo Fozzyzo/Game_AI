@@ -138,22 +138,36 @@ void MapLoader::Draw(sf::RenderWindow &_window)
 	{
 		mapNodes[i]->Draw(_window);
 	}
+
+	start.Draw(_window);
+	end.Draw(_window);
 }
 
-void MapLoader::Update(Start _start, sf::RenderWindow& _window)
+void MapLoader::Update(sf::RenderWindow& _window)
 {
-	_start.Update(_window);
+	start.Update(_window);
+	end.Update(_window);
 
 	for (int i = 0; i < mapNodes.size(); i++)
 	{
-		if (_start.getClickPosition().x >= mapNodes[i]->getPos().x
-			&& _start.getClickPosition().y >= mapNodes[i]->getPos().y
-			&& _start.getClickPosition().x <= mapNodes[i + 1]->getPos().x
-			&& _start.getClickPosition().y <= mapNodes[i + 1]->getPos().y)
+		if (start.getClickPosition().x >= mapNodes[i]->getPos().x
+			&& start.getClickPosition().y >= mapNodes[i]->getPos().y
+			&& start.getClickPosition().x <= mapNodes[i]->getPos().x + 64.0f
+			&& start.getClickPosition().y <= mapNodes[i]->getPos().y + 64.0f)
 		{
-			_start.setStartPos(sf::Vector2f(mapNodes[i]->getPos().x + 32.0f, mapNodes[i]->getPos().y + 32.0f));
+			start.setStartPos(sf::Vector2f(mapNodes[i]->getPos().x, mapNodes[i]->getPos().y));
 		}
 	}
 
+	for (int i = 0; i < mapNodes.size(); i++)
+	{
+		if (end.getClickPosition().x >= mapNodes[i]->getPos().x
+			&& end.getClickPosition().y >= mapNodes[i]->getPos().y
+			&& end.getClickPosition().x <= mapNodes[i]->getPos().x + 64.0f
+			&& end.getClickPosition().y <= mapNodes[i]->getPos().y + 64.0f)
+		{
+			end.setStartPos(sf::Vector2f(mapNodes[i]->getPos().x, mapNodes[i]->getPos().y));
+		}
+	}
 }
 

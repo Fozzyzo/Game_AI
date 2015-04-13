@@ -16,9 +16,11 @@ public:
 	float getCostMultiplier(){ return costMultiplier; }
 	sf::Sprite getSprite(){ return sprite; }
 	sf::Vector2f getPos(){ return position; }
+	sf::FloatRect getBoundingBox() { return boundingBox; }
 	
 private:
 
+	sf::FloatRect boundingBox;
 	sf::Sprite sprite;
 	sf::Vector2f position;
 	sf::Texture texture;

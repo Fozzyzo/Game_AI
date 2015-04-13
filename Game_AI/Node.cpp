@@ -17,6 +17,7 @@ Node::Node(sf::Vector2f _pos, sf::Texture& _tex, float _costMultiplier)
 	sprite.setTexture(_tex);
 	sprite.setPosition(_pos);
 	costMultiplier = _costMultiplier;
+	boundingBox = sprite.getGlobalBounds();
 }
 
 void Node::Draw(sf::RenderWindow& _window)
