@@ -40,9 +40,14 @@ int main()
 	};
 
 	map.InitMap(mapArray);
-	sf::Vector2f goalDirection(1,-1);
-	float distance = 140;
-	Pathfinding pt(map.mapNodes[0], map.mapNodes[99],goalDirection *= distance);
+	//sf::Vector2f goalDirection(0.5,-0.5);
+	//float distance = 140;
+	//Pathfinding pt(map.mapNodes[0], map.mapNodes[99],goalDirection *= distance);
+	
+	sf::Vector2f goalDirection(1,0);
+	float distance = 100;
+	Pathfinding pt(map.mapNodes[30], map.mapNodes[39],goalDirection *= distance);
+	
 	bool done = false, spaceUp = true;
 	while (window.isOpen())
 	{
@@ -51,6 +56,9 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close(); 
+			
+			if(event.type == sf::Event::KeyReleased)
+				spaceUp = true;
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -59,10 +67,10 @@ int main()
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
-			if(!done)// &&) spaceUp == true)
+			if(!done && spaceUp == true)
 			{
  				done = pt.step();
-				//spaceUp = false;
+				spaceUp = false;
 			}
 		}
 		
