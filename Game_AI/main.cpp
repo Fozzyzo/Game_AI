@@ -13,7 +13,7 @@ int main()
 	sf::Image image;
 	sf::Texture texture;
 	sf::Vector2f pos;
-	
+
 	font.loadFromFile("assets/arial.ttf");
 
 	inputInfo.setFont(font);
@@ -40,22 +40,33 @@ int main()
 	};
 
 	map.InitMap(mapArray);
-	Pathfinding pt(map.mapNodes[0], map.mapNodes[99],140);
+	sf::Vector2f goalDirection(1,-1);
+	float distance = 140;
+	Pathfinding pt(map.mapNodes[0], map.mapNodes[99],goalDirection *= distance);
+	bool done = false, spaceUp = true;
 	while (window.isOpen())
 	{
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
-				window.close();
+				window.close(); 
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
 			window.close();
 		}
-
-		//bool done = pt.step();
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			if(!done)// &&) spaceUp == true)
+			{
+ 				done = pt.step();
+				//spaceUp = false;
+			}
+		}
+		
+		
 		window.clear(sf::Color::Black);
 		map.Update(window);
 		map.Draw(window);

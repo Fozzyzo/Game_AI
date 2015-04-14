@@ -25,7 +25,7 @@ void Node::Draw(sf::RenderWindow& _window)
 	_window.draw(sprite);
 }
 
-void Node::AddConnection(Node* node, float cost)
+void Node::AddConnection(Node* node, sf::Vector2f cost)
 {
 	connections.insert(std::make_pair(node, cost));
 }

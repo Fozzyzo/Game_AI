@@ -12,7 +12,7 @@ public:
 	Node(sf::Vector2f _pos, sf::Texture& _tex, float _costMultiplier);
 	~Node();
 	void Draw(sf::RenderWindow& _window);
-	void AddConnection(Node* node, float cost);
+	void AddConnection(Node* node, sf::Vector2f cost);
 	float getCostMultiplier(){ return costMultiplier; }
 	sf::Sprite getSprite(){ return sprite; }
 	sf::Vector2f getPos(){ return position; }
@@ -24,7 +24,7 @@ private:
 	sf::Sprite sprite;
 	sf::Vector2f position;
 	sf::Texture texture;
-	std::map<Node*, float> connections;
+	std::map<Node*, sf::Vector2f> connections;
 	float costMultiplier;
 };
 

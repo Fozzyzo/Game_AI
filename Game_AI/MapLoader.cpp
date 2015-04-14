@@ -46,6 +46,7 @@ void MapLoader::InitMap(int _array[100])
 
 	rowIndex = 0;
 	columnIndex = 0;
+	
 	for (int i = 0; i < 100; i++)
 	{
 		for (int j = 0; j < 8; j++)
@@ -56,7 +57,7 @@ void MapLoader::InitMap(int _array[100])
 				if (rowIndex > 0 && columnIndex > 0)
 				{
 					if (mapNodes[i - 11]->getCostMultiplier() > 0)
-						mapNodes[i]->AddConnection(mapNodes[i - 11], 14 * mapNodes[i - 11]->getCostMultiplier());
+						mapNodes[i]->AddConnection(mapNodes[i - 11], sf::Vector2f(-1,1) *= (14 * mapNodes[i - 11]->getCostMultiplier()));
 				}
 				break;
 
@@ -64,14 +65,14 @@ void MapLoader::InitMap(int _array[100])
 				if (columnIndex > 0)
 				{
 					if (mapNodes[i - 10]->getCostMultiplier() > 0)
-						mapNodes[i]->AddConnection(mapNodes[i - 10], 10 * mapNodes[i - 10]->getCostMultiplier());
+						mapNodes[i]->AddConnection(mapNodes[i - 10], sf::Vector2f(0,1) *= (10 * mapNodes[i - 10]->getCostMultiplier()));
 				}
 				break;
 			case 2:
 				if (columnIndex > 0 && rowIndex < 9)
 				{
 					if (mapNodes[i - 9]->getCostMultiplier() > 0)
-						mapNodes[i]->AddConnection(mapNodes[i - 9], 14 * mapNodes[i - 9]->getCostMultiplier());
+						mapNodes[i]->AddConnection(mapNodes[i - 9], sf::Vector2f(1,1) *= (14 * mapNodes[i - 9]->getCostMultiplier()));
 				}
 				break;
 			case 3:
@@ -79,14 +80,14 @@ void MapLoader::InitMap(int _array[100])
 				if (rowIndex > 0)
 				{
 					if (mapNodes[i - 1]->getCostMultiplier() > 0)
-						mapNodes[i]->AddConnection(mapNodes[i - 1], 10 * mapNodes[i - 1]->getCostMultiplier());
+						mapNodes[i]->AddConnection(mapNodes[i - 1], sf::Vector2f(-1,0) *= (10 * mapNodes[i - 1]->getCostMultiplier()));
 				}
 				break;
 			case 4:
 				if (rowIndex < 9)
 				{
 					if (mapNodes[i + 1]->getCostMultiplier() > 0)
-						mapNodes[i]->AddConnection(mapNodes[i + 1], 10 * mapNodes[i + 1]->getCostMultiplier());
+						mapNodes[i]->AddConnection(mapNodes[i + 1], sf::Vector2f(1,0) *= (10 * mapNodes[i + 1]->getCostMultiplier()));
 					
 				}
 				break;
@@ -95,7 +96,7 @@ void MapLoader::InitMap(int _array[100])
 				if (columnIndex < 9 && rowIndex > 0)
 				{
 					if (mapNodes[i + 9]->getCostMultiplier() > 0)
-						mapNodes[i]->AddConnection(mapNodes[i + 9], 14 * mapNodes[i + 9]->getCostMultiplier());
+						mapNodes[i]->AddConnection(mapNodes[i + 9], sf::Vector2f(-1,-1) *= (14 * mapNodes[i + 9]->getCostMultiplier()));
 
 				}
 				break;
@@ -103,7 +104,7 @@ void MapLoader::InitMap(int _array[100])
 				if (columnIndex < 9)
 				{
 					if (mapNodes[i + 10]->getCostMultiplier() > 0)
-						mapNodes[i]->AddConnection(mapNodes[i + 10], 10 * mapNodes[i + 10]->getCostMultiplier());
+						mapNodes[i]->AddConnection(mapNodes[i + 10], sf::Vector2f(0,-1) *= (10 * mapNodes[i + 10]->getCostMultiplier()));
 					
 				}
 				break;
@@ -111,7 +112,7 @@ void MapLoader::InitMap(int _array[100])
 				if (rowIndex < 9 && columnIndex < 9)
 				{
 					if (mapNodes[i + 11]->getCostMultiplier() > 0)
-						mapNodes[i]->AddConnection(mapNodes[i + 11], 14 * mapNodes[i + 11]->getCostMultiplier());
+						mapNodes[i]->AddConnection(mapNodes[i + 11], sf::Vector2f(1,-1) *=(14 * mapNodes[i + 11]->getCostMultiplier()));
 					
 				}
 				break;
